@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context="com.dingliqc.swipeswitch.MainActivity">
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="30dp"
+        android:background="#cccccc"
+        android:text="开启新的一页" />
+    <TextView
+        android:layout_above="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="向右滑动返回\n17/3/25 By Mr.Jie"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+    <TextView
+        android:padding="20dp"
+        android:layout_below="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="20dp"
+        android:textColor="@android:color/white"
+        android:text="使用时直接集成自：BaseSwipeSwitchActivity即可，使用了沉浸式菜单，所以布局的顶层xml需要添加：fitsSystemWindows=&quot;true&quot;。可以覆盖onPreviousSlideBack()，控制是否允许滑动返回。 \n本实现仍然存在缺陷，就是只能针对launchMode=&quot;standard&quot;方式，如果出现其他方式，可能会造成页面返回不正常。"
+        android:textSize="15sp" />
+</RelativeLayout>
