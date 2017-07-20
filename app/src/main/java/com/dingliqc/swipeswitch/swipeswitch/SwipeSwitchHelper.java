@@ -52,7 +52,6 @@ public class SwipeSwitchHelper {
     }
 
     /**
-     *
      * @param ev
      * @return shifou yao
      */
@@ -68,16 +67,19 @@ public class SwipeSwitchHelper {
             case MotionEvent.ACTION_MOVE:
                 float diffX = ev.getX() - pointX;
                 float diffY = Math.abs(ev.getY() - pointY);
-                if (sliding||(diffX > diffY && pointX<effectiveWidth)) {
+                if (sliding || (diffX > diffY && pointX < effectiveWidth)) {
                     //是滑动返回的手势
                     if (sliding) {
                         //正在滑动
-                        slide(rawX<0?0:rawX);//只能向右，如果是滑倒左边，就恢复到没有滑动状态
+                        slide(rawX < 0 ? 0 : rawX);//只能向右，如果是滑倒左边，就恢复到没有滑动状态
                     } else {
                         //没有开始滑动
-                        sliding = true;
-                        startSlide();
-                        startPos = ev.getX();
+                        if (startSlide()) {
+                            sliding = true;
+                            startPos = ev.getX();
+                        } else {
+                            return false;
+                        }
                     }
                     return true;//这里表示需要拦截滑动事件
                 }
