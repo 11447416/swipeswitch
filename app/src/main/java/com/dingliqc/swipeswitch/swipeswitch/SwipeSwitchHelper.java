@@ -22,7 +22,7 @@ public class SwipeSwitchHelper {
     //可配置信息
     private int effectiveWidth = 80;//滑动识别的距离
     private float parallax = 0.3f;//视差因子
-    private float successPercent = 0.4f;//需要滑动多少，才会执行换页，不然就会恢复之前的状态
+    private float successPercent = 0.3f;//需要滑动多少，才会执行换页，不然就会恢复之前的状态
     private int animationTime = 200;//恢复动画的时间
     private int shadowWidth = 80;//阴影宽度
 
@@ -60,7 +60,7 @@ public class SwipeSwitchHelper {
         float rawX = ev.getX() - startPos;//滑动的原始x坐标
         //如果是第二个手指，就不处理，也就是只处理第一个按上去的手指,或者在动画中
         Log.i(TAG, "slideManager: "+ev.getX()+"-"+startPos+"="+rawX);
-        if (0 != ev.getActionIndex() || animating) return false;
+        if (animating) return false;
 //        if (rawX < 0 && MotionEvent.ACTION_UP != ev.getAction()) return false;//只可以往右滑动,释放的时候要跳过，不然不会恢复
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -70,11 +70,11 @@ public class SwipeSwitchHelper {
             case MotionEvent.ACTION_MOVE:
                 float diffX = ev.getX() - pointX;
                 float diffY = Math.abs(ev.getY() - pointY);
-                if (diffX > diffY && diffX > effectiveWidth) {
+                if (sliding||(diffX > diffY && diffX > effectiveWidth)) {
                     //是滑动返回的手势
                     if (sliding) {
                         //正在滑动
-                        slide(rawX<0?0:rawX);
+                        slide(rawX<0?0:rawX);//只能向右，如果是滑倒左边，就恢复到没有滑动状态
                     } else {
                         //没有开始滑动
                         sliding = true;
