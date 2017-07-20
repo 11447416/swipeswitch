@@ -59,9 +59,7 @@ public class SwipeSwitchHelper {
     public boolean slideManager(MotionEvent ev) {
         float rawX = ev.getX() - startPos;//滑动的原始x坐标
         //如果是第二个手指，就不处理，也就是只处理第一个按上去的手指,或者在动画中
-        Log.i(TAG, "slideManager: "+ev.getX()+"-"+startPos+"="+rawX);
         if (animating) return false;
-//        if (rawX < 0 && MotionEvent.ACTION_UP != ev.getAction()) return false;//只可以往右滑动,释放的时候要跳过，不然不会恢复
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 pointX = ev.getX();
@@ -70,7 +68,7 @@ public class SwipeSwitchHelper {
             case MotionEvent.ACTION_MOVE:
                 float diffX = ev.getX() - pointX;
                 float diffY = Math.abs(ev.getY() - pointY);
-                if (sliding||(diffX > diffY && diffX > effectiveWidth)) {
+                if (sliding||(diffX > diffY && pointX<effectiveWidth)) {
                     //是滑动返回的手势
                     if (sliding) {
                         //正在滑动
