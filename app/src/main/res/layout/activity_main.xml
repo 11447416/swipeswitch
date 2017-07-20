@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
-        android:background="#cccccc"
+        android:background="?android:selectableItemBackground"
         android:text="开启新的一页" />
     <TextView
         android:layout_above="@+id/btn"
@@ -31,6 +31,6 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="20dp"
         android:textColor="@android:color/white"
-        android:text="使用时直接集成自：BaseSwipeSwitchActivity即可，使用了沉浸式菜单，所以布局的顶层xml需要添加：fitsSystemWindows=&quot;true&quot;。可以覆盖onPreviousSlideBack()，控制是否允许滑动返回。 \n本实现仍然存在缺陷，就是只能针对launchMode=&quot;standard&quot;方式，如果出现其他方式，可能会造成页面返回不正常。"
+        android:text="使用时直接继承自：BaseSwipeSwitchActivity即可，使用了沉浸式菜单，所以布局的顶层xml需要添加：fitsSystemWindows=&quot;true&quot;。可以覆盖onPreviousSlideBack()，控制是否允许滑动返回。 \n本实现仍然存在缺陷，就是只能针对launchMode=&quot;standard&quot;方式，如果出现其他方式，可能会造成页面返回不正常。"
         android:textSize="15sp" />
 </RelativeLayout>
